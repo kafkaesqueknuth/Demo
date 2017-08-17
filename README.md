@@ -14,12 +14,14 @@ Build:
   - mvn clean install -U
      
 Run:
-  - java -jar target/TwitterDemo-0.0.1-SNAPSHOT.jar
+  - Execute this command in console: <i> java -jar target/TwitterDemo-0.0.1-SNAPSHOT.jar </i>
+  - (Alternately, import the maven project in Eclipse and run <i>AppStart</i>
   - Launch http://localhost:8080 on your browser
-
 
 <b>TODO:</b>
 
 - Unit Testing
 - UI enhancements
+  - Image handling
+  - Auto complete support in search
 
