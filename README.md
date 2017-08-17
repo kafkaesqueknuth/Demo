@@ -11,6 +11,7 @@ Setting up:
 
 Build:
   - cd Demo
+  - Provide Twitter tokens in <i>HardcodedAccessContext</i> class
   - mvn clean install -U
      
 Run:
