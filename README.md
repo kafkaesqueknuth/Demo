@@ -16,3 +16,10 @@ Build:
 Run:
   - java -jar target/TwitterDemo-0.0.1-SNAPSHOT.jar
   - Launch http://localhost:8080 on your browser
+
+
+#TODO:
+
+- Unit Testing
+- UI enhancements
+
