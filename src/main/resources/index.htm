@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Twitter Demo</title>
+
+<style>
+#footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+	function refreshTweets() {
+		$.ajax({
+			url : "/getTweets",
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			success : function(result) {
+				populateResult(result);
+				console.log(result);
+			}
+		});
+	}
+
+	function populateResult(result) {
+		
+		var elmtTable = document.getElementById('tweettable');
+		var tableRows = elmtTable.getElementsByTagName('tr');
+		var rowCount = tableRows.length;
+
+		for (var x=rowCount-1; x>0; x--) {
+		   elmtTable.removeChild(tableRows[x]);
+		}
+		
+		var rhtml = '';
+		for ( var index in result) {
+			rhtml += '<tr>';
+			// image
+			rhtml += '<td><img src="'+result[index].url+'" alt="x" /></td>';
+			rhtml += '<td>' + result[index].name + '</td>';
+			rhtml += '<td>' + handleTweetImages(result[index].data) + '</td>';
+			rhtml += '<td>' + result[index].rtcount + '</td>';
+			rhtml += '<td>' + result[index].date + '</td>';
+			rhtml += "</tr>";
+		}
+		
+		$("#tweettable").append(rhtml);
+		//$("#tweets").html(rhtml);
+	}
+
+	
+	function handleTweetImages(data) {
+		// attempt to handle image in tweet data. the problem is that we don't have info about what is link and what is image
+		var urlPattern = /((http[s]?):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?/ig;
+	    data = data.replace(urlPattern, function replacer(match) {
+	    	var splitStr = match.split(' ');
+	    	var resp = '';
+	    	for(var i =0; i< splitStr.length; ++i) {
+	    		resp += ' <img src="'+splitStr[i]+'" alt="'+splitStr[i]+'" /> ';
+	    	}
+	    	return resp;	
+	    });
+	    return data;
+	}
+	
+	function searchTweets() {
+		var prefixKey = document.getElementById("searchkey").value;
+		window.location.href = "/search?prefixKey=" + prefixKey;
+	}
+</script>
+</head>
+<body>
+	<div align="center" style="font-family: &amp; amp;">
+
+		<b>Twitter top 10 recent tweets</b>
+		<p id="tweets"></p>
+
+		<table border="1" id="tweettable">
+			<tr>
+				<th>Image</th>
+				<th>User</th>
+				<th>Tweet</th>
+				<th>#Retweets</th>
+				<th>Tweet Date</th>
+			</tr>
+		</table>
+
+		<script>
+			window.onload = refreshTweets;
+			setInterval(refreshTweets, 60000);
+		</script>
+
+		<div class="ui-widget">
+			<br><br>
+			<label for="searchkey"><b>Search Key: </b></label> <input id="searchkey">
+			<input id="searchbuton" type="button" value="Search" onclick="searchTweets();" />
+		</div>
+		<p></p>
+		<div id="footer"></div>
+	</div>
+
+
+</body>
+</html>

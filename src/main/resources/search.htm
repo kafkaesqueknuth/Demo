@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Twitter Demo</title>
+
+<style>
+#footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+	function searchTweets() {
+
+		var url = document.location.href, params = url.split('?')[1];
+		tmp = params.split('=');
+		prefixKey = tmp[1];
+
+		$.ajax({
+			url : "/searchTweets/" + prefixKey,
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			success : function(result) {
+				populateResult(result, prefixKey);
+				console.log(result);
+			}
+		});
+	}
+
+	function populateResult(result, key) {
+		
+		
+		/*var rhtml = '';
+		for ( var index in result) {
+			rhtml += '<tr>';
+			rhtml += '<td>' + result[index].data + '</td>';
+			rhtml += "</tr>";
+		}
+		
+		$("#tweettable").append(rhtml);*/
+		
+		
+		
+		var rhtml = '';
+		for ( var index in result) {
+			rhtml += '<tr>';
+			rhtml += '<td>' + highlightSearch(result[index].name, key) + '</td>';
+			rhtml += '<td>' + highlightSearch(result[index].data, key) + '</td>';
+			rhtml += "</tr>";
+		}
+
+		$("#searchtable").append(rhtml);
+		//$("#searchResults").html(rhtml);
+	}
+	
+	function highlightSearch(datum, key) {
+		var rhtml = '';
+		var cut = datum.split(key);
+		var i=0;
+		while(i<cut.length) {
+			rhtml += cut[i] ;
+			++i;
+			if(i < cut.length)
+				rhtml += '<span style="color:red;"><b>' + key + '</b></span>';
+		}
+
+		return rhtml;
+	}
+</script>
+</head>
+<body>
+	<div align="center" style="font-family: &amp; amp;">
+
+		<b>Search Results</b>
+		<p id="searchResults"></p>
+
+		<table border="1" id="searchtable">
+			<tr>
+				<th>User</th>
+				<th>Tweet</th>
+			</tr>
+		</table>
+		<script>
+			window.onload = searchTweets;
+		</script>
+		<p></p>
+		<div id="footer"></div>
+	</div>
+
+
+</body>
+</html>
