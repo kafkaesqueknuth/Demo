@@ -10,7 +10,6 @@ Setting up:
   - git clone https://github.com/kafkaesqueknuth/Demo.git
 
 Build:
-  - Start console 
   - cd Demo
   - mvn clean install -U
      
