@@ -18,14 +18,14 @@
 
 		var url = document.location.href, params = url.split('?')[1];
 		tmp = params.split('=');
-		prefixKey = tmp[1];
+		searchTerm = tmp[1];
 
 		$.ajax({
-			url : "/searchTweets/" + prefixKey,
+			url : "/searchTweets/" + searchTerm,
 			contentType : "application/json; charset=utf-8",
 			dataType : "json",
 			success : function(result) {
-				populateResult(result, prefixKey);
+				populateResult(result, searchTerm);
 				console.log(result);
 			}
 		});

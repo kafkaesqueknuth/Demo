@@ -42,7 +42,7 @@ public class Resource {
 	@GET
 	@Path("/search")
 	@Produces("text/html")
-	public Response search(@QueryParam(value = "prefixKey") String prefixKey) {
+	public Response search(@QueryParam(value = "searchTerm") String searchTerm) {
 		return Response.ok().entity(sIndex).build();
 	}
 
@@ -61,12 +61,12 @@ public class Resource {
 	}
 	
 	@GET
-	@Path("/searchTweets/{prefixKey}")
+	@Path("/searchTweets/{searchTerm}")
 	@Produces("application/json")
-	public Response searchTweets(@PathParam(value = "prefixKey") String prefixKey) {
+	public Response searchTweets(@PathParam(value = "searchTerm") String searchTerm) {
 		String ans = Utils.Constants.EMPTY_JSON;
-		if(prefixKey != null && !"".equals(prefixKey)) {
-			ans = TwitterWorker.getInstance().searchTweets(prefixKey);
+		if(searchTerm != null && !"".equals(searchTerm)) {
+			ans = TwitterWorker.getInstance().searchTweets(searchTerm);
 		}
 		return Response.ok().entity(ans).build();
 	}

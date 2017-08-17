@@ -2,8 +2,6 @@ package TwitterDemo;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
-import java.util.SortedMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -56,12 +54,17 @@ public class TwitterWorker {
 		s_Executor.scheduleAtFixedRate(new TwitterPoll(s_Instance.mTwitterFactory, s_Instance.mResponseState), 5, 60000, TimeUnit.MILLISECONDS); // TODO: time
 	}
 
+	// public for UT
+	public ResponseState getState() {
+		return this.mResponseState.get();
+	}
+	
 	public String getLatestTweets() {
-		return this.mResponseState.get().getJson();
+		return getState().getJson();
 	}
 	
 	private Collection<List<Status>> getMatches(final String key) {
-		final SuffixTree<List<Status>> suffixTree = this.mResponseState.get().getSuffixTree();
+		final SuffixTree<List<Status>> suffixTree = getState().getSuffixTree();
 		return suffixTree.getValuesForKeysContaining(key);
 		
 	}

@@ -68,8 +68,8 @@
 	}
 	
 	function searchTweets() {
-		var prefixKey = document.getElementById("searchkey").value;
-		window.location.href = "/search?prefixKey=" + prefixKey;
+		var searchTerm = document.getElementById("searchkey").value;
+		window.location.href = "/search?searchTerm=" + searchTerm;
 	}
 </script>
 </head>
