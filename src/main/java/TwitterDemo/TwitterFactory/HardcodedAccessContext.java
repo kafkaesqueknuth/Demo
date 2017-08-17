@@ -4,10 +4,10 @@ public class HardcodedAccessContext implements IAccessContext {
 
 	private static final HardcodedAccessContext s_instance = new HardcodedAccessContext();
 
-	static final String s_ConsumerKey = "xxxx";
-	static final String s_ConsumerSecret = "xxxx";
-	static final String s_AccessToken = "xx-xxx";
-	static final String s_AccessTokenSecret = "xxx";
+	static final String s_ConsumerKey = "xxxxxxxxxxxxxxxxxxxxx";
+	static final String s_ConsumerSecret = "xxxxxxxxxxxxxx";
+	static final String s_AccessToken = "xxxxxxxxxxxxxxx";
+	static final String s_AccessTokenSecret = "xxxxxxxxxxxxxxx";
 
 	private HardcodedAccessContext() {
 		// disable new
