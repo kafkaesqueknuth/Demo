@@ -11,7 +11,11 @@ Setting up:
 
 Build:
   - cd Demo
-  - mvn clean install -U
+  - Using console 
+      - mvn clean install -U
+     OR 
+  - Using Eclipse
+      - Load as maven project and "Run As" <i>maven install</i>
   
 Run:
   - java -jar target/TwitterDemo-0.0.1-SNAPSHOT.jar
