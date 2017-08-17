@@ -14,7 +14,7 @@ Build:
   - mvn clean install -U
      
 Run:
-  - Execute this command in console: <i> java -jar target/TwitterDemo-0.0.1-SNAPSHOT.jar </i> (Alternately, import the maven project in Eclipse and run <i>AppStart</i>
+  - Execute this command in console: <i> java -jar target/TwitterDemo-0.0.1-SNAPSHOT.jar </i> (Alternately, import the maven project in Eclipse and run <i>AppStart</i>)
   - Launch http://localhost:8080 on your browser
 
 <b>TODO:</b>
