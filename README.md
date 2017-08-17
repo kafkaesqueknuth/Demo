@@ -10,13 +10,10 @@ Setting up:
   - git clone https://github.com/kafkaesqueknuth/Demo.git
 
 Build:
+  - Start console 
   - cd Demo
-  - Using console 
-      - mvn clean install -U
-     OR 
-  - Using Eclipse
-      - Load as maven project and "Run As" <i>maven install</i>
-  
+  - mvn clean install -U
+     
 Run:
   - java -jar target/TwitterDemo-0.0.1-SNAPSHOT.jar
   - Launch http://localhost:8080 on your browser
