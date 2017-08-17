@@ -4,6 +4,7 @@ public class HardcodedAccessContext implements IAccessContext {
 
 	private static final HardcodedAccessContext s_instance = new HardcodedAccessContext();
 
+	// substitute with valid tokens/keys
 	static final String s_ConsumerKey = "xxxxxxxxxxxxxxxxxxxxx";
 	static final String s_ConsumerSecret = "xxxxxxxxxxxxxx";
 	static final String s_AccessToken = "xxxxxxxxxxxxxxx";
