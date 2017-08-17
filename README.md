@@ -18,7 +18,7 @@ Run:
   - Launch http://localhost:8080 on your browser
 
 
-## TODO:
+<b>TODO:</b>
 
 - Unit Testing
 - UI enhancements
